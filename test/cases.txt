@@ -1,0 +1,113 @@
+# Definition
+
+def
+entity
+ic
+module
+
+==>
+
+Rel(Definition, Definition, Definition, Definition)
+
+# Keyword
+
+and
+as
+else
+end
+for
+from
+if
+iff
+implies
+in
+include
+not
+or
+select
+then
+use
+with
+where
+xor
+
+==>
+
+Rel(Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword)
+
+# Type
+
+Any
+Char
+Missing
+Floating
+UnsignedInt
+SignedInt
+Rational
+FixedDecimal
+RelName
+Entity
+AutoNumber
+Hash
+FilePos
+Date
+DateTime
+Year
+Month
+Week
+Day
+Hour
+Minute
+Second
+Millisecond
+Microsecond
+Nanosecond
+
+==>
+
+Rel(Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type)
+
+# Number
+
+101
+3.14
+3.14e+1
+0x1ABCDEFabcdef
+0o7632157312
+0b1010101001
+1e+3
+
+==>
+
+Rel(Number, Number, Number, Number, Number, Number, Number)
+
+# Boolean
+
+true
+false
+
+==>
+
+Rel(Boolean, Boolean)
+
+# Attribute
+
+@include
+
+==>
+
+Rel(Attribute)
+
+# String
+
+"A string with \"double\" and 'single' quotes"
+'A string with "double" and \'single\' quotes'
+'\\'
+"\\"
+
+'A string with new \
+line'
+
+==>
+
+Rel(String, String, String, String, String)
