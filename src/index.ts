@@ -6,12 +6,12 @@ import {styleTags, tags as t} from "@codemirror/highlight"
 export const relLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
-      indentNodeProp.add({
-        Application: delimitedIndent({closing: ")", align: false})
-      }),
-      foldNodeProp.add({
-        Application: foldInside
-      }),
+      // indentNodeProp.add({
+      //   Application: delimitedIndent({closing: ")", align: false})
+      // }),
+      // foldNodeProp.add({
+      //   Application: foldInside
+      // }),
       styleTags({
         'use forall for iff if then else end where with select implies': t.controlKeyword,
         'in not and or xor': t.operatorKeyword,
@@ -20,22 +20,19 @@ export const relLanguage = LRLanguage.define({
         'module': t.moduleKeyword,
         'Any String Int Number Char Missing Floating UnsignedInt SignedInt Rational FixedDecimal RelName Entity AutoNumber Hash FilePos Date DateTime Year Month Week Day Hour Minute Second Millisecond Microsecond Nanosecond Boolean':
           t.typeName,
-        BooleanLiteral: t.bool,
-        NumberLiteral: t.number,
-        VariableName: t.variableName,
-        PropertyName: t.propertyName,
         Number: t.number,
+        BooleanLiteral: t.bool,
         StringLiteral: t.string,
-        DateLiteral: t.string,
-        DateTimeLiteral: t.string,
-        ArithOp: t.arithmeticOperator,
-        CompareOp: t.compareOperator,
+        // DateLiteral: t.string,
+        // DateTimeLiteral: t.string,
         AssignOp: t.definitionOperator,
         LineComment: t.lineComment,
         BlockComment: t.blockComment,
+        VariableName: t.definition(t.variableName),
         Atom: t.atom,
         RelnameLiteral: t.atom,
         RelnameStringLiteral: t.atom,
+        DefineStatement: t.atom,
         '( )': t.paren,
         '[ ]': t.squareBracket,
         '{ }': t.brace,
