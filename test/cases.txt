@@ -1,104 +1,30 @@
-# Definition
-
-def
-entity
-ic
-module
-
-==>
-
-Rel(Definition, Definition, Definition, Definition)
-
-# Keyword
-
-and
-as
-else
-end
-for
-from
-if
-iff
-implies
-in
-include
-not
-or
-select
-then
-use
-with
-where
-xor
-
-==>
-
-Rel(Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword)
-
-# Type
-
-Any
-Char
-Missing
-Floating
-UnsignedInt
-SignedInt
-Rational
-FixedDecimal
-RelName
-Entity
-AutoNumber
-Hash
-FilePos
-Date
-DateTime
-Year
-Month
-Week
-Day
-Hour
-Minute
-Second
-Millisecond
-Microsecond
-Nanosecond
-
-==>
-
-Rel(Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type, Type)
-
-# Number
+# Numbers
 
 101
-3.14
-3.14e+1
+01010101001
 0x1ABCDEFabcdef
 0o7632157312
-0b1010101001
 1e+3
 
 ==>
 
-Rel(Number, Number, Number, Number, Number, Number, Number)
+Rel(ExpressionStatement(Number),
+    ExpressionStatement(Number),
+    ExpressionStatement(Number),
+    ExpressionStatement(Number),
+    ExpressionStatement(Number))
 
-# Boolean
+# Booleans
 
 true
 false
 
 ==>
 
-Rel(Boolean, Boolean)
+Rel(ExpressionStatement(BooleanLiteral),
+  ExpressionStatement(BooleanLiteral))
 
-# Attribute
-
-@include
-
-==>
-
-Rel(Attribute)
-
-# String
+# Strings
 
 "A string with \"double\" and 'single' quotes"
 'A string with "double" and \'single\' quotes'
@@ -110,4 +36,66 @@ line'
 
 ==>
 
-Rel(String, String, String, String, String)
+Rel(ExpressionStatement(StringLiteral),
+    ExpressionStatement(StringLiteral),
+    ExpressionStatement(StringLiteral),
+    ExpressionStatement(StringLiteral),
+    ExpressionStatement(StringLiteral))
+
+# Rel
+
+:test
+:[]
+
+==>
+
+Rel(ExpressionStatement(RelnameLiteral),
+  ExpressionStatement(RelnameLiteral))
+
+# If Statement
+
+if 1 then 2 else 3 end
+
+==>
+
+Rel(IfStatement(if,Body(ExpressionStatement(Number)),then,Body(ExpressionStatement(Number)),else,Body(ExpressionStatement(Number)),end))
+
+# Inline Statement
+
+@inline
+
+==>
+
+Rel(InlineStatement(inline))
+
+# Def Statement
+
+def a = 1
+
+==>
+
+Rel(DefineStatement(def, VariableName, AssignOp), ExpressionStatement(Number))
+
+# Output Statement
+
+def output = A
+
+==>
+
+Rel(OutputDefinitionStatement(def, output, AssignOp, VariableName))
+
+# Module Statement
+
+module store def a = 1 end
+
+==>
+
+Rel(ModuleStatement(module, VariableName, Body(DefineStatement(def, VariableName, AssignOp), ExpressionStatement(Number)), end))
+
+# Type Statement
+
+Int a
+
+==>
+
+Rel(TypeStatement(IntType(Int, VariableName)))
