@@ -1,6 +1,6 @@
 {
   "name": "@codemirror/lang-rel",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Rel language support for CodeMirror code editor",
   "scripts": {
     "test": "mocha test/test.js",
